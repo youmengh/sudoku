@@ -27,10 +27,10 @@ public class Puzzle {
      */
     private int[][] generatePuzzle() {
         int[][] newBoard = new int[SIZE][SIZE];
-        for(int x  = 0; x < SIZE; x++) {
-            for(int y  = 0; y < SIZE; y++) {
+        for(int r  = 0; r < SIZE; r++) {
+            for(int c  = 0; c < SIZE; c++) {
                 Random rand = new Random();
-                newBoard[x][y] = rand.nextInt(9) + 1;
+                newBoard[r][c] = rand.nextInt(9) + 1;
             }
         }
         return newBoard;
@@ -43,9 +43,9 @@ public class Puzzle {
     @Override
     public String toString(){
         String printedBoard = "";
-        for(int x  = 0; x < SIZE; x++) {
-            for (int y = 0; y < SIZE; y++) {
-                printedBoard += board[x][y] + "\t";
+        for(int r  = 0; r < SIZE; r++) {
+            for (int c = 0; c < SIZE; c++) {
+                printedBoard += board[r][c] + "\t";
             }
             printedBoard += "\n";
         }
