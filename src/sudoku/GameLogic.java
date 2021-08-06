@@ -15,6 +15,25 @@ public class GameLogic {
 //    }
 
     /**
+     * Checks whether every column in the puzzle board is valid
+     * @param board An array representing the puzzle grid
+     * @return True if no duplicates found in all columns false otherwise
+     */
+    public static boolean checkCols(int[][] board) {
+        int[] temp;
+        //copies every column to a temporary array and check for duplicates
+        for(int c = 0; c < board.length; c++) {
+            temp = new int[9];
+            for(int r = 0; r < board.length; r++) {
+                temp[r] = board[r][c];
+            }
+            if(checkDuplicates(temp))
+                return false;
+        }
+        return true;
+    }
+
+    /**
      * Checks whether every row in the puzzle board is valid
      * @param board An array representing the puzzle grid
      * @return True if no duplicates found in all rows false otherwise
