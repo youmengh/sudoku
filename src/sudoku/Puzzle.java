@@ -36,5 +36,20 @@ public class Puzzle {
         return newBoard;
     }
 
+    /**
+     * A toString method for printing the puzzle grid in text format
+     * @return A string representation of the grid
+     */
+    @Override
+    public String toString(){
+        String printedBoard = "";
+        for(int x  = 0; x < SIZE; x++) {
+            for (int y = 0; y < SIZE; y++) {
+                printedBoard += board[x][y] + "\t";
+            }
+            printedBoard += "\n";
+        }
+        return printedBoard;
+    }
 
 }
