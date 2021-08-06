@@ -10,4 +10,12 @@ public class GameLogic {
 //            return true;
 //        return false;
 //    }
+
+    public static boolean checkRows(int[][] board) {
+        for(int r = 0; r < board.length; r++) {
+            if(checkDuplicates(board[r]))
+                return false;
+        }
+        return true;
+    }
 }
