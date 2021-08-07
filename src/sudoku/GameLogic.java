@@ -9,13 +9,57 @@ import java.util.Set;
 public class GameLogic {
 
 //    public static boolean checkCompletion(int[][] board) {
-//        if(checkRows(board) && checkCols(board) && checkSquares(board))
+//        if
+//        (
+//                checkZeros(board) &&
+//                checkRows(board) &&
+//                checkCols(board) &&
+//                checkSquares(board)
+//        )
 //            return true;
 //        return false;
 //    }
 
     /**
-     * Checks whether every column in the puzzle board is valid
+     * Determines if every sub-grid in the puzzle board is valid
+     * @param board An array representing the puzzle grid
+     * @return True if no duplicates found in all sub-grids false otherwise
+     */
+    public static boolean checkSquares(int[][] board) {
+        boolean duplicateFound = false;
+        for(int r = 0; r < board.length; r+=3) {
+            for(int c = 0; c < board.length; c+=3) {
+                if(!checkOneSquare(board, r, c))   //false if checkSquare() detects a duplicate in one of the sub-grids
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Determines if one single sub-grid is valid
+     * Mainly used as a helper method for checkSquares
+     * @param board An array representing the puzzle grid
+     * @param startRow The starting row of a sub-grid on the board
+     * @param startColumn The starting column of a sub-grid on the board
+     * @return True if no duplicates found in all sub-grids false otherwise
+     */
+    public static boolean checkOneSquare( int[][] board, int startRow, int startColumn) {
+        int[] temp = new int[9];
+        int tempIndex = 0;
+        for(int r = startRow; r < startRow + 3; r++) {
+            for(int c = startColumn; c < startColumn + 3; c++) {
+                temp[tempIndex] = board[r][c];
+                tempIndex++;
+            }
+            if(checkDuplicates(temp))
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * Determins if every column in the puzzle board is valid
      * @param board An array representing the puzzle grid
      * @return True if no duplicates found in all columns false otherwise
      */
@@ -34,7 +78,7 @@ public class GameLogic {
     }
 
     /**
-     * Checks whether every row in the puzzle board is valid
+     * Determines if every row in the puzzle board is valid
      * @param board An array representing the puzzle grid
      * @return True if no duplicates found in all rows false otherwise
      */
@@ -47,7 +91,7 @@ public class GameLogic {
     }
 
     /**
-     * Takes in an array of 9 integers and check whether duplicates can be found
+     * Takes in an array of 9 integers and determines if duplicates can be found
      * @param ints An array of 9 integers
      * @return True if duplicates are found false otherwise
      */
