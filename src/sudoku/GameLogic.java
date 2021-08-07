@@ -8,17 +8,33 @@ import java.util.Set;
  */
 public class GameLogic {
 
-//    public static boolean checkCompletion(int[][] board) {
-//        if
-//        (
-//                checkZeros(board) &&
-//                checkRows(board) &&
-//                checkCols(board) &&
-//                checkSquares(board)
-//        )
-//            return true;
-//        return false;
-//    }
+    public static boolean checkCompletion(int[][] board) {
+        if
+        (
+                checkZeros(board) &&
+                checkRows(board) &&
+                checkCols(board) &&
+                checkSquares(board)
+        )
+            return true;
+        return false;
+    }
+
+    /**
+     * Determines if puzzle board is filled with valid digits (1-9)
+     * Serves as a helper method to checkCompletion()
+     * @param board An array representing the puzzle grid
+     * @return True if puzzle board is non zero false otherwise
+     */
+    private static boolean checkZeros(int[][] board) {
+        for(int r = 0; r < board.length; r++) {
+            for (int c = 0; c < board.length; c++) {
+                if(board[r][c] == 0)
+                    return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Determines if every sub-grid in the puzzle board is valid
