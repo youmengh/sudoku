@@ -5,6 +5,8 @@ import java.util.Set;
 
 /**
  * Manages the logical component of the game by validating puzzles and checking for completion
+ * @author Youmeng Hin
+ * @version 21.08.07
  */
 public class GameLogic {
 
