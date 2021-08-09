@@ -113,7 +113,7 @@ public class GameLogic {
      * @param ints An array of 9 integers
      * @return True if duplicates are found false otherwise
      */
-    public static boolean checkDuplicates(int[] ints) {
+    private static boolean checkDuplicates(int[] ints) {
         Set set = new HashSet();
         for (int num : ints) {
             if (set.contains(num)) {
