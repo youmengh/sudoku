@@ -7,7 +7,7 @@ import java.util.Random;
 
 /**
  * @author Youmeng Hin
- * @version 21.08.05
+ * @version 21.08.09
  */
 public class Puzzle {
     private int[][] board;          //digits on puzzle board
