@@ -54,10 +54,11 @@ public class Puzzle {
     }
 
     /**
-     * @return an array of size 81 containing the grid
+     * Generates a valid 9 by 9 Sudoku grid with 1 through 9 appearing only once in every box, row, and column
+     *
+     * @return An array of size 81 containing the grid
      * @author Mark Fredrick Graves, Jr.
      * @version 17.03.01
-     * Generates a valid 9 by 9 Sudoku grid with 1 through 9 appearing only once in every box, row, and column
      */
     private int[] generateGrid() {
 
@@ -201,11 +202,12 @@ public class Puzzle {
     }
 
     /**
-     * @param grid an array with length 81 to be tested
-     * @return a boolean representing if the grid is valid
+     * Tests an int array of length 81 to see if it is a valid Sudoku grid. i.e. 1 through 9 appearing once each in every row, column, and box
+     *
+     * @param grid An array with length 81 to be tested
+     * @return A boolean representing if the grid is valid
      * @author Mark Fredrick Graves, Jr.
      * @version 17.03.01
-     * Tests an int array of length 81 to see if it is a valid Sudoku grid. i.e. 1 through 9 appearing once each in every row, column, and box
      */
     private boolean isPerfect(int[] grid) {
         if (grid.length != 81)
