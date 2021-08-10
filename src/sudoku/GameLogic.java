@@ -39,7 +39,7 @@ public class GameLogic {
     }
 
     /**
-     * Determines if every sub-grid in the puzzle board is valid
+     * Determines if every sub-grid on the puzzle board is valid
      * @param board An array representing the puzzle grid
      * @return True if no duplicates found in all sub-grids false otherwise
      */
@@ -77,7 +77,7 @@ public class GameLogic {
     }
 
     /**
-     * Determins if every column in the puzzle board is valid
+     * Determines if every column on the puzzle board is valid
      * @param board An array representing the puzzle grid
      * @return True if no duplicates found in all columns false otherwise
      */
@@ -96,7 +96,23 @@ public class GameLogic {
     }
 
     /**
-     * Determines if every row in the puzzle board is valid
+     * Determines if a column on the puzzle board is valid
+     * @param board An array representing the puzzle grid
+     * @param colNum Column number to check
+     * @return True if the column ia valid and false otherwise
+     */
+    public static boolean checkOneCol(int[][] board, int colNum) {
+        int[] temp = new int[9];
+        for (int r = 0; r < board.length; r++) {
+            temp[r] = board[r][colNum];
+        }
+        if (checkDuplicates(temp))
+            return false;
+        return true;
+    }
+
+    /**
+     * Determines if every row on the puzzle board is valid
      * @param board An array representing the puzzle grid
      * @return True if no duplicates found in all rows false otherwise
      */
