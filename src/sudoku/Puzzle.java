@@ -17,16 +17,16 @@ public class Puzzle {
     /**
      * Constructor
      */
-    public Puzzle(){
+    public Puzzle() {
         board = generatePuzzle();
         inputCells = new boolean[SIZE][SIZE];
     }
 
     /**
+     * @return an array of size 81 containing the grid
      * @author Mark Fredrick Graves, Jr.
      * @version 17.03.01
      * Generates a valid 9 by 9 Sudoku grid with 1 through 9 appearing only once in every box, row, and column
-     * @return an array of size 81 containing the grid
      */
     private int[] generateGrid() {
 
@@ -170,30 +170,89 @@ public class Puzzle {
     }
 
     /**
-     * Generates a new valid sudoku puzzle represented by a 2D int array
-     * @version 21.08.05 - only generates a grid with random numbers
-     *                   - no puzzle validation
-     * @return A 2D int array representing the puzzle board
+     * @param grid an array with length 81 to be tested
+     * @return a boolean representing if the grid is valid
+     * @author Mark Fredrick Graves, Jr.
+     * @version 17.03.01
+     * Tests an int array of length 81 to see if it is a valid Sudoku grid. i.e. 1 through 9 appearing once each in every row, column, and box
      */
-    private int[][] generatePuzzle() {
-        int[][] newBoard = new int[SIZE][SIZE];
-        for(int r  = 0; r < SIZE; r++) {
-            for(int c  = 0; c < SIZE; c++) {
-                Random rand = new Random();
-                newBoard[r][c] = rand.nextInt(9) + 1;
+    private boolean isPerfect(int[] grid) {
+        if (grid.length != 81)
+            throw new IllegalArgumentException("The grid must be a single-dimension grid of length 81");
+
+        //tests to see if the grid is perfect
+
+        //for every box
+        for (int i = 0; i < 9; i++) {
+            boolean[] registered = new boolean[10];
+            registered[0] = true;
+            int boxOrigin = (i * 3) % 9 + ((i * 3) / 9) * 27;
+            for (int j = 0; j < 9; j++) {
+                int boxStep = boxOrigin + (j / 3) * 9 + (j % 3);
+                int boxNum = grid[boxStep];
+                registered[boxNum] = true;
             }
+            for (boolean b : registered)
+                if (!b) return false;
         }
-        return newBoard;
+
+        //for every row
+        for (int i = 0; i < 9; i++) {
+            boolean[] registered = new boolean[10];
+            registered[0] = true;
+            int rowOrigin = i * 9;
+            for (int j = 0; j < 9; j++) {
+                int rowStep = rowOrigin + j;
+                int rowNum = grid[rowStep];
+                registered[rowNum] = true;
+            }
+            for (boolean b : registered)
+                if (!b) return false;
+        }
+
+        //for every column
+        for (int i = 0; i < 9; i++) {
+            boolean[] registered = new boolean[10];
+            registered[0] = true;
+            int colOrigin = i;
+            for (int j = 0; j < 9; j++) {
+                int colStep = colOrigin + j * 9;
+                int colNum = grid[colStep];
+                registered[colNum] = true;
+            }
+            for (boolean b : registered)
+                if (!b) return false;
+        }
+
+        return true;
     }
+
+//    /**
+//     * Generates a new valid sudoku puzzle represented by a 2D int array
+//     * @version 21.08.05 - only generates a grid with random numbers
+//     *                   - no puzzle validation
+//     * @return A 2D int array representing the puzzle board
+//     */
+//    private int[][] generatePuzzle() {
+//        int[][] newBoard = new int[SIZE][SIZE];
+//        for(int r  = 0; r < SIZE; r++) {
+//            for(int c  = 0; c < SIZE; c++) {
+//                Random rand = new Random();
+//                newBoard[r][c] = rand.nextInt(9) + 1;
+//            }
+//        }
+//        return newBoard;
+//    }
 
     /**
      * A toString method for printing the puzzle grid in text format
+     *
      * @return A string representation of the grid
      */
     @Override
-    public String toString(){
+    public String toString() {
         String printedBoard = "";
-        for(int r  = 0; r < SIZE; r++) {
+        for (int r = 0; r < SIZE; r++) {
             for (int c = 0; c < SIZE; c++) {
                 printedBoard += board[r][c] + "\t";
             }
