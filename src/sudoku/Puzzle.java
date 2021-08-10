@@ -12,15 +12,27 @@ import java.util.Random;
 public class Puzzle {
     private int[][] board;          //digits on puzzle board
     private boolean[][] inputCells; //where on the board inputs are allowed (true = allowed)
-    private int[] puzzleNums;
+    private int[] puzzleNums;       //puzzle grid in 1D int array
+    private int inputCellSize;      //the number of input cells on the puzzle board
     private final int SIZE = 9;     //size constant used to contruct and work with puzzle
 
     /**
      * Constructor
      */
     public Puzzle() {
-        board = generatePuzzle();
+        board = new int[SIZE][SIZE];
+        puzzleNums = generateGrid();
+        int gridIndex = 0;
+        for (int r = 0; r < SIZE; r++) {
+            for (int c = 0; c < SIZE; c++) {
+                board[r][c] = puzzleNums[gridIndex];
+                gridIndex++;
+            }
+        }
         inputCells = new boolean[SIZE][SIZE];
+        Random rand = new Random();
+        inputCellSize = rand.nextInt(61) + 30;
+        setInputCells(inputCellSize);
     }
 
     /**
