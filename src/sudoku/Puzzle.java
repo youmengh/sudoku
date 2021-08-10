@@ -37,18 +37,19 @@ public class Puzzle {
 
     /**
      * Enable input cells at random coordinates on a 9x9 boolean array by setting each to true
+     *
      * @param numInputs the number of empty cells that will be enabled for inputs
      */
     private void setInputCells(int numInputs) {
         Random rand = new Random();
         int r, c;
-        for(int i = 0; i < numInputs; i++) {
+        for (int i = 0; i < numInputs; i++) {
             r = rand.nextInt(9);
             c = rand.nextInt(9);
-            if(!inputCells[r][c])
+            if (!inputCells[r][c])
                 inputCells[r][c] = true;
         }
-        for(int j = 0; j < SIZE; j++)
+        for (int j = 0; j < SIZE; j++)
             System.out.println(Arrays.toString(inputCells[j]));
     }
 
@@ -273,6 +274,15 @@ public class Puzzle {
 //        }
 //        return newBoard;
 //    }
+
+    /**
+     * Accessor method for puzzle board array
+     *
+     * @return A 2D int array of the puzzle board
+     */
+    public int[][] getPuzzleArray() {
+        return board;
+    }
 
     /**
      * A toString method for printing the puzzle grid in text format
