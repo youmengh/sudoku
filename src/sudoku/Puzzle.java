@@ -260,23 +260,6 @@ public class Puzzle {
         return true;
     }
 
-//    /**
-//     * Generates a new valid sudoku puzzle represented by a 2D int array
-//     * @version 21.08.05 - only generates a grid with random numbers
-//     *                   - no puzzle validation
-//     * @return A 2D int array representing the puzzle board
-//     */
-//    private int[][] generatePuzzle() {
-//        int[][] newBoard = new int[SIZE][SIZE];
-//        for(int r  = 0; r < SIZE; r++) {
-//            for(int c  = 0; c < SIZE; c++) {
-//                Random rand = new Random();
-//                newBoard[r][c] = rand.nextInt(9) + 1;
-//            }
-//        }
-//        return newBoard;
-//    }
-
     /**
      * Accessor method for puzzle board array
      *
@@ -285,6 +268,8 @@ public class Puzzle {
     public int[][] getPuzzleArray() {
         return board;
     }
+
+    public boolean[][] getInputCells() { return inputCells; }
 
     /**
      * A toString method for printing the puzzle grid in text format
@@ -304,3 +289,22 @@ public class Puzzle {
     }
 
 }
+
+//////////////////////////////////////////////////////////////////////////////
+//    /**
+//     * Generates a new valid sudoku puzzle represented by a 2D int array
+//     * @version 21.08.05 - only generates a grid with random numbers
+//     *                   - no puzzle validation
+//     * @return A 2D int array representing the puzzle board
+//     */
+//    private int[][] generatePuzzle() {
+//        int[][] newBoard = new int[SIZE][SIZE];
+//        for(int r  = 0; r < SIZE; r++) {
+//            for(int c  = 0; c < SIZE; c++) {
+//                Random rand = new Random();
+//                newBoard[r][c] = rand.nextInt(9) + 1;
+//            }
+//        }
+//        return newBoard;
+//    }
+//////////////////////////////////////////////////////////////////////////////
