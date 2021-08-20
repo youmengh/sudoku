@@ -8,13 +8,20 @@ import javafx.stage.Stage;
 
 /**
  * @author Youmeng Hin
- * @version 21.08.19
+ * @version 21.08.20
  */
 public class Main extends Application {
+
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Sets up window and implements interface from FXML.fxml
+     *
+     * @param stage starting stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXML.fxml"));

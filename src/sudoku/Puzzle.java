@@ -6,8 +6,10 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
+ * Simulates a puzzle board and relevant features
+ *
  * @author Youmeng Hin
- * @version 21.08.09
+ * @version 21.08.20
  */
 public class Puzzle {
     private int[][] board;          //digits on puzzle board
@@ -269,7 +271,14 @@ public class Puzzle {
         return board;
     }
 
-    public boolean[][] getInputCells() { return inputCells; }
+    /**
+     * Accessor method for array of input cells
+     *
+     * @return A 2D int array of showing where input cells locate
+     */
+    public boolean[][] getInputCells() {
+        return inputCells;
+    }
 
     /**
      * A toString method for printing the puzzle grid in text format
