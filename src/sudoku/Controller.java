@@ -21,10 +21,14 @@ public class Controller implements Initializable {
     private void initializeGrid() {
         Button cellButton;
         int[][] board = puzzle.getPuzzleArray();
+        boolean[][] inputCells = puzzle.getInputCells();
         for(int r=0; r<SIZE; r++) {
             for(int c=0; c<SIZE; c++) {
                 cellButton = (Button) grid.getChildren().get(r*SIZE+c);     //"r*SIZE+c" computes cell index
-                cellButton.setText(String.valueOf(board[r][c]));
+                if(!inputCells[r][c])
+                    cellButton.setText(String.valueOf(board[r][c]));
+                else
+                    cellButton.setText("0");
             }
         }
     }
