@@ -1,6 +1,8 @@
 package sudoku;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 /**
@@ -14,7 +16,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
+        Parent root = FXMLLoader.load(getClass().getResource("FXML.fxml"));
         stage.setTitle("Sudoku (v21.08.19) by Youmeng Hin");
         stage.show();
     }
