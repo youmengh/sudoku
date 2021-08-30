@@ -61,6 +61,44 @@ public class Controller implements Initializable {
         }
     }
 
+    /**
+     * A private helper class that handles the logic behind each button on puzzle board
+     */
+    private class CellEventHandler implements EventHandler<ActionEvent> {
 
+        private final Button b;
+
+        /**
+         * Constructor
+         *
+         * @param b - the cell button being passed
+         */
+        public CellEventHandler(Button b) {
+            this.b = b;
+        }
+
+        /**
+         * Implements the functionality when the button is clicked
+         *
+         * @param e - button's event being passed
+         */
+        @Override
+        public void handle(ActionEvent e) {
+
+            //store the row and column indices in r and c
+            int r = (gridBoard.getRowIndex(b) == null) ? 0 : gridBoard.getRowIndex(b);
+            int c = (gridBoard.getColumnIndex(b) == null) ? 0 : gridBoard.getColumnIndex(b);
+
+            System.out.println("Selected Cell\t" + r + " " + c);
+
+//            //adds the user's guessing number to the puzzle
+//            puzzle.addGuess(r, c, input);
+//
+//            if(GameLogic.checkCompletion(puzzle.getPuzzleArray())) {
+//                Alert over = new Alert(Alert.AlertType.INFORMATION, "PUZZLE COMPLETED!");
+//            }
+
+        }
+    }
 
 }
