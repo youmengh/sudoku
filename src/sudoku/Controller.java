@@ -22,6 +22,7 @@ public class Controller implements Initializable {
     private int[][] board;
     private boolean[][] inputCells;
     private final int SIZE = 9;
+    private int inputKey;
 
     /**
      * Initializes front-end and back-end connection
@@ -49,6 +50,8 @@ public class Controller implements Initializable {
         for(int r=0; r<gridPad.getRowCount(); r++) {
             for (int c=0; c<gridPad.getColumnCount(); c++) {
                 keyButton = (Button) gridPad.getChildren().get(r*gridPad.getRowCount()+c);   //r*gridPad.getRowCount()+c computes the index
+                event = new KeyEventHandler(keyButton);
+                keyButton.setOnAction(event);
             }
         }
 
@@ -80,6 +83,26 @@ public class Controller implements Initializable {
 
                 cellButton.setOnAction(event);
             }
+        }
+    }
+
+    /**
+     * A private helper class that handles the logic behind each keypad button
+     */
+    private class KeyEventHandler implements EventHandler<ActionEvent> {
+
+        private final Button b;
+
+        public KeyEventHandler(Button b) {
+            this.b = b;
+        }
+
+        @Override
+        public void handle(ActionEvent actionEvent) {
+
+            inputKey = Integer.valueOf(b.getText());
+            System.out.println("Selected Number: " + inputKey);
+
         }
     }
 
