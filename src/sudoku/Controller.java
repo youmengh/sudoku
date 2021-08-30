@@ -20,6 +20,7 @@ public class Controller implements Initializable {
     public GridPane gridPad;
     private Puzzle puzzle;
     private int[][] board;
+    private boolean[][] inputCells;
     private final int SIZE = 9;
 
     /**
@@ -32,6 +33,7 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         puzzle = new Puzzle();
         board = puzzle.getPuzzleArray();
+        inputCells = puzzle.getInputCells();
         initializeGrid();
     }
 
@@ -43,8 +45,6 @@ public class Controller implements Initializable {
 
         Button cellButton;
         EventHandler<ActionEvent> event;
-
-        boolean[][] inputCells = puzzle.getInputCells();
 
         for(int r=0; r<SIZE; r++) {
             for(int c=0; c<SIZE; c++) {
