@@ -33,10 +33,21 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         puzzle = new Puzzle();
         initializeGrid();
+        initializeKeyPad();
+    }
+
+    /**
+     * Sets up keypad
+     * Implements action handlers to buttons
+     * Functions as a helper method for initialize()
+     */
+    private void initializeKeyPad() {
+
     }
 
     /**
      * Sets up the 9x9 GridPane to show correct digits representing the puzzle board
+     * Implements action handlers to buttons
      * Functions as a helper method for initialize()
      */
     private void initializeGrid() {
