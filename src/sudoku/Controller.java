@@ -14,7 +14,8 @@ import java.util.ResourceBundle;
  * @version 21.08.20
  */
 public class Controller implements Initializable {
-    public GridPane grid;
+    public GridPane gridBoard;
+    public GridPane gridPad;
     private Puzzle puzzle;
     private final int SIZE = 9;
 
@@ -38,10 +39,10 @@ public class Controller implements Initializable {
         Button cellButton;
         int[][] board = puzzle.getPuzzleArray();
         boolean[][] inputCells = puzzle.getInputCells();
-        for (int r = 0; r < SIZE; r++) {
-            for (int c = 0; c < SIZE; c++) {
-                cellButton = (Button) grid.getChildren().get(r * SIZE + c);     //"r*SIZE+c" computes cell index
-                if (!inputCells[r][c])
+        for(int r=0; r<SIZE; r++) {
+            for(int c=0; c<SIZE; c++) {
+                cellButton = (Button) gridBoard.getChildren().get(r*SIZE+c);     //"r*SIZE+c" computes cell index
+                if(!inputCells[r][c])
                     cellButton.setText(String.valueOf(board[r][c]));
                 else
                     cellButton.setText("0");

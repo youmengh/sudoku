@@ -13,9 +13,12 @@ public class SudokuGame {
      */
     public SudokuGame() {
         completed = false;
-        puzzle = new Puzzle(false);
+        puzzle = new Puzzle();
         run(puzzle);
     }
 
-    
+    private void run(Puzzle puzzle) {
+    }
+
+
 }
