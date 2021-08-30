@@ -43,6 +43,15 @@ public class Controller implements Initializable {
      */
     private void initializeKeyPad() {
 
+        Button keyButton;
+        EventHandler<ActionEvent> event;
+
+        for(int r=0; r<gridPad.getRowCount(); r++) {
+            for (int c=0; c<gridPad.getColumnCount(); c++) {
+                keyButton = (Button) gridPad.getChildren().get(r*gridPad.getRowCount()+c);   //r*gridPad.getRowCount()+c computes the index
+            }
+        }
+
     }
 
     /**
