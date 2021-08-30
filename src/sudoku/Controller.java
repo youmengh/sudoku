@@ -1,5 +1,7 @@
 package sudoku;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -36,18 +38,29 @@ public class Controller implements Initializable {
      * Functions as a helper method for initialize()
      */
     private void initializeGrid() {
+
         Button cellButton;
+        EventHandler<ActionEvent> event;
+
         int[][] board = puzzle.getPuzzleArray();
         boolean[][] inputCells = puzzle.getInputCells();
+
         for(int r=0; r<SIZE; r++) {
             for(int c=0; c<SIZE; c++) {
+
                 cellButton = (Button) gridBoard.getChildren().get(r*SIZE+c);     //"r*SIZE+c" computes cell index
                 if(!inputCells[r][c])
                     cellButton.setText(String.valueOf(board[r][c]));
                 else
                     cellButton.setText("0");
+
+                event = new CellEventHandler(cellButton);
+
+                cellButton.setOnAction(event);
             }
         }
     }
+
+
 
 }
