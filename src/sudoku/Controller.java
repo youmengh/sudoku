@@ -93,6 +93,7 @@ public class Controller implements Initializable {
                 } else {
                     userBoard[r][c] = 0;
                     cellButton.setText("0");
+                    cellButton.setStyle("-fx-background-color: #d3d3d3");
                 }
 
                 event = new CellEventHandler(cellButton);
@@ -108,7 +109,7 @@ public class Controller implements Initializable {
     private class KeyEventHandler implements EventHandler<ActionEvent> {
 
         private final Button b;
-        private Button temp;    //temporary button for changing value of a cell
+        private Button temp;    //temporary button for changing value of a cell on gridBoard
 
         /**
          * Constructor
@@ -130,7 +131,7 @@ public class Controller implements Initializable {
                 temp.setText(String.valueOf(inputKey));
             }
             else {
-                System.out.println("You can't edit this cell");
+                System.out.println("Unable to edit current cell");
             }
             //puzzle.addGuess(r, c, inputKey);
 
@@ -145,6 +146,7 @@ public class Controller implements Initializable {
     private class CellEventHandler implements EventHandler<ActionEvent> {
 
         private final Button b;
+        private Button prevBtn;     //previous button
 
         /**
          * Constructor
@@ -163,12 +165,22 @@ public class Controller implements Initializable {
         @Override
         public void handle(ActionEvent e) {
 
+            prevBtn = (Button)gridBoard.getChildren().get(selectedCell); //using selectedCell to reference to the index of the previous button
+            prevBtn.setStyle("-fx-background-color: #d3d3d3");
+
             //store the row and column indices in r and c
             r = (gridBoard.getRowIndex(b) == null) ? 0 : gridBoard.getRowIndex(b);
             c = (gridBoard.getColumnIndex(b) == null) ? 0 : gridBoard.getColumnIndex(b);
-            selectedCell = r*SIZE+c;
 
-            System.out.println("Selected Cell:\t" + r + " " + c);
+            //if input is allowed for current cell then update selectedCell value
+            //and highlight the current selected cell
+            if(inputCells[r][c]) {
+                selectedCell = r * SIZE + c;    //update index to current button
+                b.setStyle("-fx-background-color: yellow"); //highlight current button
+                System.out.println("Selected Cell:\t" + r + " " + c);
+            } else {
+                System.out.println("Cell edit not allowed... :(\nCell clicked:\t" + r + " " + c);
+            }
 
 //            //adds the user's guessing number to the puzzle
 //            puzzle.addGuess(r, c, input);
