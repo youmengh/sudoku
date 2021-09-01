@@ -6,15 +6,15 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
- * Simulates a puzzle board and relevant features
+ * Simulates a Sudoku puzzle board and relevant features
  *
  * @author Youmeng Hin
  * @version 21.08.20
  */
 public class Puzzle {
-    private int[][] board;          //digits on puzzle board
-    private boolean[][] inputCells; //where on the board inputs are allowed (true = allowed)
-    private int[][] user;           //the puzzle board displayed to the user and can be altered by the user
+    private int[][] solution;       //digits on puzzle board
+    private boolean[][] inputCells; //represent locations inputs are allowed on the puzzle board (true = allowed)
+    private int[][] user;           //the puzzle board displayed to the user that can be altered by the user
     private int[] puzzleNums;       //puzzle grid in 1D int array
     private int inputCellSize;      //the number of input cells on the puzzle board
     private final int SIZE = 9;     //size constant used to contruct and work with puzzle
@@ -23,12 +23,12 @@ public class Puzzle {
      * Constructor
      */
     public Puzzle() {
-        board = new int[SIZE][SIZE];
+        solution = new int[SIZE][SIZE];
         puzzleNums = generateGrid();
         int gridIndex = 0;
         for (int r = 0; r < SIZE; r++) {
             for (int c = 0; c < SIZE; c++) {
-                board[r][c] = puzzleNums[gridIndex];
+                solution[r][c] = puzzleNums[gridIndex];
                 gridIndex++;
             }
         }
@@ -264,12 +264,12 @@ public class Puzzle {
     }
 
     /**
-     * Accessor method for puzzle board array
+     * Accessor method for solution board array
      *
-     * @return A 2D int array of the puzzle board
+     * @return A 2D int array of the solution board
      */
     public int[][] getPuzzleArray() {
-        return board;
+        return solution;
     }
 
     /**
@@ -291,7 +291,7 @@ public class Puzzle {
         String printedBoard = "";
         for (int r = 0; r < SIZE; r++) {
             for (int c = 0; c < SIZE; c++) {
-                printedBoard += board[r][c] + "\t";
+                printedBoard += solution[r][c] + "\t";
             }
             printedBoard += "\n";
         }
