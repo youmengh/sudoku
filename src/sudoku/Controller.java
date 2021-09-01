@@ -33,6 +33,8 @@ public class Controller implements Initializable {
     //other variables
     private final int SIZE = 9;
     private int inputKey;
+    private int r, c;               //general row and column variables used to store as a coordinate
+    private int selectedCell;       //stores the index of child on gridBoard
 
     /**
      * Initializes front-end and back-end connection
@@ -100,7 +102,13 @@ public class Controller implements Initializable {
     private class KeyEventHandler implements EventHandler<ActionEvent> {
 
         private final Button b;
+        private Button temp;    //temporary button for changing value of a cell
 
+        /**
+         * Constructor
+         *
+         * @param b - the keypad button being passed
+         */
         public KeyEventHandler(Button b) {
             this.b = b;
         }
@@ -109,6 +117,17 @@ public class Controller implements Initializable {
         public void handle(ActionEvent actionEvent) {
 
             inputKey = Integer.valueOf(b.getText());
+
+            //allows for cell value edit if cell location allows for take inputs
+            if(inputCells[r][c]) {
+                temp = (Button) gridBoard.getChildren().get(selectedCell);
+                temp.setText(String.valueOf(inputKey));
+            }
+            else {
+                System.out.println("You can't edit this cell");
+            }
+            //puzzle.addGuess(r, c, inputKey);
+
             System.out.println("Selected Number: " + inputKey);
 
         }
@@ -139,8 +158,9 @@ public class Controller implements Initializable {
         public void handle(ActionEvent e) {
 
             //store the row and column indices in r and c
-            int r = (gridBoard.getRowIndex(b) == null) ? 0 : gridBoard.getRowIndex(b);
-            int c = (gridBoard.getColumnIndex(b) == null) ? 0 : gridBoard.getColumnIndex(b);
+            r = (gridBoard.getRowIndex(b) == null) ? 0 : gridBoard.getRowIndex(b);
+            c = (gridBoard.getColumnIndex(b) == null) ? 0 : gridBoard.getColumnIndex(b);
+            selectedCell = r*SIZE+c;
 
             System.out.println("Selected Cell:\t" + r + " " + c);
 
