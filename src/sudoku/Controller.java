@@ -2,6 +2,7 @@ package sudoku;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -16,12 +17,20 @@ import java.util.ResourceBundle;
  * @version 21.08.20
  */
 public class Controller implements Initializable {
+
+    @FXML
     public GridPane gridBoard;
+    @FXML
     public GridPane gridPad;
+    @FXML
     private Puzzle puzzle;
+
+    //grid-related variables
     private int[][] board;          //user board of the puzzle
     private int[][] solution;       //solution board of the puzzle
     private boolean[][] inputCells; //array showing locations of input cells
+
+    //other variables
     private final int SIZE = 9;
     private int inputKey;
 
