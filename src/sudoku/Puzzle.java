@@ -14,6 +14,7 @@ import java.util.Random;
 public class Puzzle {
     private int[][] board;          //digits on puzzle board
     private boolean[][] inputCells; //where on the board inputs are allowed (true = allowed)
+    private int[][] user;           //the puzzle board displayed to the user and can be altered by the user
     private int[] puzzleNums;       //puzzle grid in 1D int array
     private int inputCellSize;      //the number of input cells on the puzzle board
     private final int SIZE = 9;     //size constant used to contruct and work with puzzle

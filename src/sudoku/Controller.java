@@ -134,7 +134,7 @@ public class Controller implements Initializable {
             int r = (gridBoard.getRowIndex(b) == null) ? 0 : gridBoard.getRowIndex(b);
             int c = (gridBoard.getColumnIndex(b) == null) ? 0 : gridBoard.getColumnIndex(b);
 
-            System.out.println("Selected Cell\t" + r + " " + c);
+            System.out.println("Selected Cell:\t" + r + " " + c);
 
 //            //adds the user's guessing number to the puzzle
 //            puzzle.addGuess(r, c, input);
