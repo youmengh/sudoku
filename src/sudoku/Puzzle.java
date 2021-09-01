@@ -12,9 +12,9 @@ import java.util.Random;
  * @version 21.09.01
  */
 public class Puzzle {
-    private int[][] solution;       //digits on puzzle board
+    private int[][] board;       //digits on puzzle board
     private boolean[][] inputCells; //represent locations inputs are allowed on the puzzle board (true = allowed)
-    private int[][] user;           //the puzzle board displayed to the user that can be altered by the user
+//    private int[][] user;           //the puzzle board displayed to the user that can be altered by the user
     private int[] puzzleNums;       //puzzle grid in 1D int array
     private int inputCellSize;      //the number of input cells on the puzzle board
     private final int SIZE = 9;     //size constant used to contruct and work with puzzle
@@ -30,22 +30,14 @@ public class Puzzle {
         inputCellSize = rand.nextInt(61) + 30;
         setInputCells(inputCellSize);
 
-        //initialize arrays
-        solution = new int[SIZE][SIZE];
-        user = new int[SIZE][SIZE];
+        //initialize and generate arrays
+        board = new int[SIZE][SIZE];
         puzzleNums = generateGrid();
 
         int gridIndex = 0;
         for (int r = 0; r < SIZE; r++) {
             for (int c = 0; c < SIZE; c++) {
-                solution[r][c] = puzzleNums[gridIndex];
-
-                //if input cell is on coordinate set user board's current cell to 0
-                if(inputCells[r][c])
-                    user[r][c] = 0;
-                else
-                    user[r][c] = puzzleNums[gridIndex];
-
+                board[r][c] = puzzleNums[gridIndex];
                 gridIndex++;
             }
         }
@@ -281,16 +273,9 @@ public class Puzzle {
      *
      * @return A 2D int array of the solution board
      */
-    public int[][] getSolution() {
-        return solution;
+    public int[][] getPuzzleArray() {
+        return board;
     }
-
-    /**
-     * Accessor method for user board array (has random zeros)
-     *
-     * @return A 2D int array of the user board
-     */
-    public int[][] getUserBoard() { return user; }
 
     /**
      * Accessor method for array of input cells
@@ -311,7 +296,7 @@ public class Puzzle {
         String printedBoard = "";
         for (int r = 0; r < SIZE; r++) {
             for (int c = 0; c < SIZE; c++) {
-                printedBoard += solution[r][c] + "\t";
+                printedBoard += board[r][c] + "\t";
             }
             printedBoard += "\n";
         }

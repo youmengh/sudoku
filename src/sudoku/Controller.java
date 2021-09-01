@@ -26,8 +26,8 @@ public class Controller implements Initializable {
     private Puzzle puzzle;
 
     //grid-related variables
-    private int[][] board;          //user board of the puzzle
-    private int[][] solution;       //solution board of the puzzle
+    private int[][] board;          //2D int array of the puzzle solution
+    private int[][] userBoard;      //2D int array of the displayed puzzle board
     private boolean[][] inputCells; //array showing locations of input cells
 
     //other variables
@@ -76,9 +76,9 @@ public class Controller implements Initializable {
      */
     private void initializeGrid() {
 
-        board = puzzle.getUserBoard();
-        solution = puzzle.getSolution();
-        inputCells = puzzle.getInputCells();
+        board = puzzle.getPuzzleArray();        //gets the solution array
+        userBoard = puzzle.getPuzzleArray();    //gets the solution array
+        inputCells = puzzle.getInputCells();    //gets the input cell locations array
 
         Button cellButton;
         EventHandler<ActionEvent> event;
@@ -87,7 +87,13 @@ public class Controller implements Initializable {
             for(int c=0; c<SIZE; c++) {
 
                 cellButton = (Button) gridBoard.getChildren().get(r*SIZE+c);     //"r*SIZE+c" computes cell index
-                cellButton.setText(String.valueOf(board[r][c]));
+
+                if(!inputCells[r][c]) {
+                    cellButton.setText(String.valueOf(board[r][c]));
+                } else {
+                    userBoard[r][c] = 0;
+                    cellButton.setText("0");
+                }
 
                 event = new CellEventHandler(cellButton);
 
