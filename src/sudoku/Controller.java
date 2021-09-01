@@ -19,8 +19,9 @@ public class Controller implements Initializable {
     public GridPane gridBoard;
     public GridPane gridPad;
     private Puzzle puzzle;
-    private int[][] board;
-    private boolean[][] inputCells;
+    private int[][] board;          //user board of the puzzle
+    private int[][] solution;       //solution board of the puzzle
+    private boolean[][] inputCells; //array showing locations of input cells
     private final int SIZE = 9;
     private int inputKey;
 
@@ -64,20 +65,18 @@ public class Controller implements Initializable {
      */
     private void initializeGrid() {
 
+        board = puzzle.getUserBoard();
+        solution = puzzle.getSolution();
+        inputCells = puzzle.getInputCells();
+
         Button cellButton;
         EventHandler<ActionEvent> event;
-
-        board = puzzle.getPuzzleArray();
-        inputCells = puzzle.getInputCells();
 
         for(int r=0; r<SIZE; r++) {
             for(int c=0; c<SIZE; c++) {
 
                 cellButton = (Button) gridBoard.getChildren().get(r*SIZE+c);     //"r*SIZE+c" computes cell index
-                if(!inputCells[r][c])
-                    cellButton.setText(String.valueOf(board[r][c]));
-                else
-                    cellButton.setText("0");
+                cellButton.setText(String.valueOf(board[r][c]));
 
                 event = new CellEventHandler(cellButton);
 

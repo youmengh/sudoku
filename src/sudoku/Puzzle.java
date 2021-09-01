@@ -23,19 +23,32 @@ public class Puzzle {
      * Constructor
      */
     public Puzzle() {
-        solution = new int[SIZE][SIZE];
-        puzzleNums = generateGrid();
-        int gridIndex = 0;
-        for (int r = 0; r < SIZE; r++) {
-            for (int c = 0; c < SIZE; c++) {
-                solution[r][c] = puzzleNums[gridIndex];
-                gridIndex++;
-            }
-        }
+
+        //set up and place random zeros (30-60 zeros)
         inputCells = new boolean[SIZE][SIZE];
         Random rand = new Random();
         inputCellSize = rand.nextInt(61) + 30;
         setInputCells(inputCellSize);
+
+        //initialize arrays
+        solution = new int[SIZE][SIZE];
+        user = new int[SIZE][SIZE];
+        puzzleNums = generateGrid();
+
+        int gridIndex = 0;
+        for (int r = 0; r < SIZE; r++) {
+            for (int c = 0; c < SIZE; c++) {
+                solution[r][c] = puzzleNums[gridIndex];
+
+                //if input cell is on coordinate set user board's current cell to 0
+                if(inputCells[r][c])
+                    user[r][c] = 0;
+                else
+                    user[r][c] = puzzleNums[gridIndex];
+
+                gridIndex++;
+            }
+        }
     }
 
     /**
@@ -268,9 +281,16 @@ public class Puzzle {
      *
      * @return A 2D int array of the solution board
      */
-    public int[][] getPuzzleArray() {
+    public int[][] getSolution() {
         return solution;
     }
+
+    /**
+     * Accessor method for user board array (has random zeros)
+     *
+     * @return A 2D int array of the user board
+     */
+    public int[][] getUserBoard() { return user; }
 
     /**
      * Accessor method for array of input cells
