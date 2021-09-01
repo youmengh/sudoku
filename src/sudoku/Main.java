@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 /**
  * @author Youmeng Hin
- * @version 21.08.20
+ * @version 21.09.01
  */
 public class Main extends Application {
 
@@ -27,7 +27,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Sudoku (v21.08.19) by Youmeng Hin");
+        stage.setTitle("Sudoku (v21.09.01) by Youmeng Hin");
         stage.show();
     }
 }

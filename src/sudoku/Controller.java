@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
  * This class functions as the logical connection between front-end and back-end
  *
  * @author Youmeng Hin
- * @version 21.08.20
+ * @version 21.09.01
  */
 public class Controller implements Initializable {
 
