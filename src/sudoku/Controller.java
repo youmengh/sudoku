@@ -33,7 +33,7 @@ public class Controller implements Initializable {
     //other variables
     private final int SIZE = 9;
     private int inputKey;
-    private int r, c;               //general row and column variables used to store as a coordinate
+    private int r, c;               //general row and column variables used to store as the selected coordinate
     private int selectedCell;       //stores the index of child on gridBoard
 
     /**
@@ -127,10 +127,13 @@ public class Controller implements Initializable {
 
             //allows for cell value edit if cell location allows for take inputs
             if(inputCells[r][c]) {
+                userBoard[r][c] = inputKey;
+                System.out.println(GameLogic.printBoard(userBoard));
                 temp = (Button) gridBoard.getChildren().get(selectedCell);
                 temp.setText(String.valueOf(inputKey));
             }
             else {
+                System.out.println(GameLogic.printBoard(userBoard));
                 System.out.println("Unable to edit current cell");
             }
             //puzzle.addGuess(r, c, inputKey);
@@ -179,7 +182,7 @@ public class Controller implements Initializable {
                 b.setStyle("-fx-background-color: yellow"); //highlight current button
                 System.out.println("Selected Cell:\t" + r + " " + c);
             } else {
-                System.out.println("Cell edit not allowed... :(\nCell clicked:\t" + r + " " + c);
+                System.out.println("Cell clicked:\t" + r + " " + c + "\nCell edit not allowed... :(");
             }
 
 //            //adds the user's guessing number to the puzzle

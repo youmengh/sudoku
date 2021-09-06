@@ -286,22 +286,23 @@ public class Puzzle {
         return inputCells;
     }
 
-    /**
-     * A toString method for printing the puzzle grid in text format
-     *
-     * @return A string representation of the grid
-     */
-    @Override
-    public String toString() {
-        String printedBoard = "";
-        for (int r = 0; r < SIZE; r++) {
-            for (int c = 0; c < SIZE; c++) {
-                printedBoard += board[r][c] + "\t";
-            }
-            printedBoard += "\n";
-        }
-        return printedBoard;
-    }
+    //temporary unused code
+//    /**
+//     * A toString method for printing the puzzle grid in text format
+//     *
+//     * @return A string representation of the grid
+//     */
+//    @Override
+//    public String toString() {
+//        String printedBoard = "";
+//        for (int r = 0; r < SIZE; r++) {
+//            for (int c = 0; c < SIZE; c++) {
+//                printedBoard += board[r][c] + "\t";
+//            }
+//            printedBoard += "\n";
+//        }
+//        return printedBoard;
+//    }
 
 }
 

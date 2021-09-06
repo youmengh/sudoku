@@ -163,4 +163,21 @@ public class GameLogic {
         return false;
     }
 
+    /**
+     * A String method for printing the puzzle grid in text format
+     *
+     * @param board the puzzle board being printed
+     * @return A string representation of the grid
+     */
+    public static String printBoard(int[][] board) {
+        String printedBoard = "";
+        for (int r = 0; r < board.length; r++) {
+            for (int c = 0; c < board.length; c++) {
+                printedBoard += board[r][c] + "\t";
+            }
+            printedBoard += "\n";
+        }
+        return printedBoard;
+    }
+
 }
