@@ -50,26 +50,6 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Sets up keypad
-     * Implements action handlers to buttons
-     * Functions as a helper method for initialize()
-     */
-    private void initializeKeyPad() {
-
-        Button keyButton;
-        EventHandler<ActionEvent> event;
-
-        for(int r=0; r<gridPad.getRowCount(); r++) {
-            for (int c=0; c<gridPad.getColumnCount(); c++) {
-                keyButton = (Button) gridPad.getChildren().get(r*gridPad.getRowCount()+c);   //r*gridPad.getRowCount()+c computes the index
-                event = new KeyEventHandler(keyButton);
-                keyButton.setOnAction(event);
-            }
-        }
-
-    }
-
-    /**
      * Sets up the 9x9 GridPane to show correct digits representing the puzzle board
      * Implements action handlers to buttons
      * Functions as a helper method for initialize()
@@ -104,43 +84,23 @@ public class Controller implements Initializable {
     }
 
     /**
-     * A private helper class that handles the logic behind each keypad button
+     * Sets up keypad
+     * Implements action handlers to buttons
+     * Functions as a helper method for initialize()
      */
-    private class KeyEventHandler implements EventHandler<ActionEvent> {
+    private void initializeKeyPad() {
 
-        private final Button b;
-        private Button temp;    //temporary button for changing value of a cell on gridBoard
+        Button keyButton;
+        EventHandler<ActionEvent> event;
 
-        /**
-         * Constructor
-         *
-         * @param b - the keypad button being passed
-         */
-        public KeyEventHandler(Button b) {
-            this.b = b;
+        for(int r=0; r<gridPad.getRowCount(); r++) {
+            for (int c=0; c<gridPad.getColumnCount(); c++) {
+                keyButton = (Button) gridPad.getChildren().get(r*gridPad.getRowCount()+c);   //r*gridPad.getRowCount()+c computes the index
+                event = new KeyEventHandler(keyButton);
+                keyButton.setOnAction(event);
+            }
         }
 
-        @Override
-        public void handle(ActionEvent actionEvent) {
-
-            inputKey = Integer.valueOf(b.getText());
-
-            //allows for cell value edit if cell location allows for take inputs
-            if(inputCells[r][c]) {
-                userBoard[r][c] = inputKey;
-                System.out.println(GameLogic.printBoard(userBoard));
-                temp = (Button) gridBoard.getChildren().get(selectedCell);
-                temp.setText(String.valueOf(inputKey));
-            }
-            else {
-                System.out.println(GameLogic.printBoard(userBoard));
-                System.out.println("Unable to edit current cell");
-            }
-            //puzzle.addGuess(r, c, inputKey);
-
-            System.out.println("Selected Number: " + inputKey);
-
-        }
     }
 
     /**
@@ -191,6 +151,46 @@ public class Controller implements Initializable {
 //            if(GameLogic.checkCompletion(puzzle.getPuzzleArray())) {
 //                Alert over = new Alert(Alert.AlertType.INFORMATION, "PUZZLE COMPLETED!");
 //            }
+
+        }
+    }
+
+    /**
+     * A private helper class that handles the logic behind each keypad button
+     */
+    private class KeyEventHandler implements EventHandler<ActionEvent> {
+
+        private final Button b;
+        private Button temp;    //temporary button for changing value of a cell on gridBoard
+
+        /**
+         * Constructor
+         *
+         * @param b - the keypad button being passed
+         */
+        public KeyEventHandler(Button b) {
+            this.b = b;
+        }
+
+        @Override
+        public void handle(ActionEvent actionEvent) {
+
+            inputKey = Integer.valueOf(b.getText());
+
+            //allows for cell value edit if cell location allows for take inputs
+            if(inputCells[r][c]) {
+                userBoard[r][c] = inputKey;
+                System.out.println(GameLogic.printBoard(userBoard));
+                temp = (Button) gridBoard.getChildren().get(selectedCell);
+                temp.setText(String.valueOf(inputKey));
+            }
+            else {
+                System.out.println(GameLogic.printBoard(userBoard));
+                System.out.println("Unable to edit current cell");
+            }
+            //puzzle.addGuess(r, c, inputKey);
+
+            System.out.println("Selected Number: " + inputKey);
 
         }
     }
