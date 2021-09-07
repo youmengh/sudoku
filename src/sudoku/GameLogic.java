@@ -48,8 +48,9 @@ public class GameLogic {
      */
     public static boolean checkSquares(int[][] board) {
         boolean duplicateFound = false;
+        //nested for-loops help to retrieve base rows and base columns
         for (int r = 0; r < board.length; r += 3) {
-            for (int c = 0; c < board.length; c += 3) {
+            for (int c = 0; c < board[r].length; c += 3) {
                 if (!checkOneSquare(board, r, c))   //false if checkSquare() detects a duplicate in one of the sub-grids
                     return false;
             }
@@ -172,12 +173,35 @@ public class GameLogic {
     public static String printBoard(int[][] board) {
         String printedBoard = "";
         for (int r = 0; r < board.length; r++) {
-            for (int c = 0; c < board.length; c++) {
+            for (int c = 0; c < board[r].length; c++) {
                 printedBoard += board[r][c] + "\t";
             }
             printedBoard += "\n";
         }
         return printedBoard;
+    }
+
+    /**
+     * Method used for comparing two puzzle boards given as 2D int arrays (compare the solution board with the user's board)
+     * @param a 2D int array of a puzzle board
+     * @param b 2D int array of a puzzle board
+     * @return True if every digit is the same false otherwise
+     */
+    public static boolean comparePuzzleBoard(int[][] a, int[][] b) {
+
+//        //for debugging purpose
+//        System.out.println(printBoard(a)+"\n");
+//        System.out.println(printBoard(b)+"\n");
+
+        for(int r=0; r<a.length; r++) {
+            for (int c = 0; c < a[r].length; c++) {
+//                System.out.println("comparing: " + a[r][c] + " " + b[r][c]);    //for debugging purpose
+                if (a[r][c] != b[r][c]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }

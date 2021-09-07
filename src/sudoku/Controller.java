@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
@@ -23,12 +24,20 @@ public class Controller implements Initializable {
     @FXML
     public GridPane gridPad;
     @FXML
+    public GridPane gridOptions;
+    @FXML
     private Puzzle puzzle;
 
     //grid-related variables
     private int[][] board;          //2D int array of the puzzle solution
     private int[][] userBoard;      //2D int array of the displayed puzzle board
     private boolean[][] inputCells; //array showing locations of input cells
+
+    //Game option buttons
+    private Button checkPuzzle;
+    private Button newPuzzle;
+    private Button reset;
+    private Button quit;
 
     //other variables
     private final int SIZE = 9;
@@ -47,6 +56,7 @@ public class Controller implements Initializable {
         puzzle = new Puzzle();
         initializeGrid();
         initializeKeyPad();
+        initializeGameOptions();
     }
 
     /**
@@ -57,7 +67,8 @@ public class Controller implements Initializable {
     private void initializeGrid() {
 
         board = puzzle.getPuzzleArray();        //gets the solution array
-        userBoard = puzzle.getPuzzleArray();    //gets the solution array
+//        userBoard = puzzle.getPuzzleArray();    //gets the solution array
+        userBoard = new int[SIZE][SIZE];
         inputCells = puzzle.getInputCells();    //gets the input cell locations array
 
         Button cellButton;
@@ -69,6 +80,7 @@ public class Controller implements Initializable {
                 cellButton = (Button) gridBoard.getChildren().get(r*SIZE+c);     //"r*SIZE+c" computes cell index
 
                 if(!inputCells[r][c]) {
+                    userBoard[r][c] = board[r][c];
                     cellButton.setText(String.valueOf(board[r][c]));
                 } else {
                     userBoard[r][c] = 0;
@@ -81,6 +93,10 @@ public class Controller implements Initializable {
                 cellButton.setOnAction(event);
             }
         }
+
+        //for debugging purpose
+        System.out.println("Solution:\n" + GameLogic.printBoard(board));
+        System.out.println("User's Board:\n" + GameLogic.printBoard(userBoard));
     }
 
     /**
@@ -100,6 +116,16 @@ public class Controller implements Initializable {
                 keyButton.setOnAction(event);
             }
         }
+
+    }
+
+    private void initializeGameOptions() {
+
+        EventHandler<ActionEvent> event;
+
+        checkPuzzle = (Button)gridOptions.getChildren().get(0);
+        event = new GameOptionHandler();
+        checkPuzzle.setOnAction(event);
 
     }
 
@@ -140,17 +166,13 @@ public class Controller implements Initializable {
             if(inputCells[r][c]) {
                 selectedCell = r * SIZE + c;    //update index to current button
                 b.setStyle("-fx-background-color: yellow"); //highlight current button
+
+                //for debugging purpose
                 System.out.println("Selected Cell:\t" + r + " " + c);
             } else {
+                //for debugging purpose
                 System.out.println("Cell clicked:\t" + r + " " + c + "\nCell edit not allowed... :(");
             }
-
-//            //adds the user's guessing number to the puzzle
-//            puzzle.addGuess(r, c, input);
-//
-//            if(GameLogic.checkCompletion(puzzle.getPuzzleArray())) {
-//                Alert over = new Alert(Alert.AlertType.INFORMATION, "PUZZLE COMPLETED!");
-//            }
 
         }
     }
@@ -177,7 +199,8 @@ public class Controller implements Initializable {
 
             inputKey = Integer.valueOf(b.getText());
 
-            //allows for cell value edit if cell location allows for take inputs
+            //if inputCells returns true stores inputKey value in current cell location
+            //otherwise send "Unable to edit current cell" prompt and do nothing
             if(inputCells[r][c]) {
                 userBoard[r][c] = inputKey;
                 System.out.println(GameLogic.printBoard(userBoard));
@@ -185,14 +208,32 @@ public class Controller implements Initializable {
                 temp.setText(String.valueOf(inputKey));
             }
             else {
-                System.out.println(GameLogic.printBoard(userBoard));
+                System.out.println(GameLogic.printBoard(userBoard));    //for debugging purpose
                 System.out.println("Unable to edit current cell");
             }
-            //puzzle.addGuess(r, c, inputKey);
 
+            //for debugging purpose
             System.out.println("Selected Number: " + inputKey);
 
         }
     }
 
+    private class GameOptionHandler implements EventHandler<ActionEvent> {
+
+        public GameOptionHandler() {}
+
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            if(actionEvent.getSource() == checkPuzzle) {
+                if(GameLogic.comparePuzzleBoard(userBoard, board)) {
+                    System.out.println("CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
+//                    Alert over = new Alert(Alert.AlertType.INFORMATION, "CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
+                } else {
+                    System.out.println("PUZZLE IS INCOMPLETE :(");
+//                    Alert over = new Alert(Alert.AlertType.INFORMATION, "PUZZLE IS INCOMPLETE :(");
+                }
+            }
+        }
+
+    }
 }
