@@ -227,10 +227,16 @@ public class Controller implements Initializable {
             if(actionEvent.getSource() == checkPuzzle) {
                 if(GameLogic.comparePuzzleBoard(userBoard, board)) {
                     System.out.println("CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
-//                    Alert over = new Alert(Alert.AlertType.INFORMATION, "CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
+                    Alert over = new Alert(Alert.AlertType.CONFIRMATION, "CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
+                    over.setTitle("Sudoku (v21.09.01) by Youmeng Hin");
+                    over.setHeaderText("Result:");
+                    over.showAndWait();
                 } else {
                     System.out.println("PUZZLE IS INCOMPLETE :(");
-//                    Alert over = new Alert(Alert.AlertType.INFORMATION, "PUZZLE IS INCOMPLETE :(");
+                    Alert notOver = new Alert(Alert.AlertType.CONFIRMATION, "PUZZLE IS INCOMPLETE :(");
+                    notOver.setTitle("Sudoku (v21.09.01) by Youmeng Hin");
+                    notOver.setHeaderText("Result:");
+                    notOver.showAndWait();
                 }
             }
         }
