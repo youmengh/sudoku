@@ -709,7 +709,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="82.0" prefWidth="276.0" style="-fx-background-color: LAWNGREEN;" text="New Puzzle" GridPane.rowIndex="2">
+                <Button fx:id="newPuzzle" mnemonicParsing="false" prefHeight="82.0" prefWidth="276.0" style="-fx-background-color: LAWNGREEN;" text="New Puzzle" GridPane.rowIndex="2">
                     <font>
                         <Font name="Times New Roman Bold" size="20.0" />
                     </font>
@@ -717,7 +717,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="111.0" prefWidth="247.0" style="-fx-background-color: RED;" text="Quit" textFill="WHITE" GridPane.rowIndex="4">
+                <Button fx:id="quit" mnemonicParsing="false" prefHeight="111.0" prefWidth="247.0" style="-fx-background-color: RED;" text="Quit" textFill="WHITE" GridPane.rowIndex="4">
                     <font>
                         <Font name="Times New Roman Bold" size="20.0" />
                     </font>
@@ -725,7 +725,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="92.0" prefWidth="268.0" style="-fx-background-color: RED;" text="Reset" textFill="WHITE" GridPane.rowIndex="3">
+                <Button fx:id="reset" mnemonicParsing="false" prefHeight="92.0" prefWidth="268.0" style="-fx-background-color: RED;" text="Reset" textFill="WHITE" GridPane.rowIndex="3">
                     <font>
                         <Font name="Times New Roman Bold" size="20.0" />
                     </font>

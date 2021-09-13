@@ -23,11 +23,19 @@ public class Puzzle {
      * Constructor
      */
     public Puzzle() {
+        createNew();
+    }
 
+
+    /**
+     * Helper method - resets all values and generate a new puzzle
+     */
+    public void createNew() {
         //set up and place random zeros (30-60 zeros)
         inputCells = new boolean[SIZE][SIZE];
         Random rand = new Random();
         inputCellSize = rand.nextInt(61) + 30;
+        inputCellSize = 1;
         setInputCells(inputCellSize);
 
         //initialize and generate arrays
