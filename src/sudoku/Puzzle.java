@@ -9,7 +9,7 @@ import java.util.Random;
  * Simulates a Sudoku puzzle board and relevant features
  *
  * @author Youmeng Hin
- * @version 21.09.01
+ * @version 21.09.14
  */
 public class Puzzle {
     private int[][] board;       //digits on puzzle board
@@ -34,9 +34,9 @@ public class Puzzle {
         //set up and place random zeros (30-60 zeros)
         inputCells = new boolean[SIZE][SIZE];
         Random rand = new Random();
-        inputCellSize = rand.nextInt(61) + 30;
+        inputCellSize = rand.nextInt(51) + 30;
 
-        inputCellSize = 1;      //for debugging purpose
+//        inputCellSize = 1;      //for debugging purpose
 
         setInputCells(inputCellSize);
 
