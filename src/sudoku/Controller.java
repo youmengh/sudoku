@@ -125,11 +125,13 @@ public class Controller implements Initializable {
         checkPuzzle = (Button)gridOptions.getChildren().get(0);
         newPuzzle = (Button)gridOptions.getChildren().get(1);
         reset = (Button)gridOptions.getChildren().get(2);
+        quit = (Button)gridOptions.getChildren().get(3);
 
         event = new GameOptionHandler();
         checkPuzzle.setOnAction(event);
         newPuzzle.setOnAction(event);
         reset.setOnAction(event);
+        quit.setOnAction(event);
 
     }
 
@@ -253,6 +255,10 @@ public class Controller implements Initializable {
 
                 System.out.println("Puzzle reset");       //for debugging purpose
                 btnReset();
+
+            } else if (actionEvent.getSource() == quit) {
+
+                System.exit(0);
 
             }
         }
