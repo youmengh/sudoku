@@ -5,20 +5,11 @@ package sudoku;
  * @version 21.08.04
  */
 public class SudokuGame {
-    private Puzzle puzzle;
-    private boolean completed;
 
     /**
      * Constructor
      */
     public SudokuGame() {
-        completed = false;
-        puzzle = new Puzzle();
-        run(puzzle);
     }
-
-    private void run(Puzzle puzzle) {
-    }
-
 
 }

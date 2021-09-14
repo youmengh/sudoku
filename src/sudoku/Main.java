@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 /**
  * @author Youmeng Hin
- * @version 21.09.01
+ * @version 21.09.13
  */
 public class Main extends Application {
 
@@ -27,11 +27,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Sudoku (v21.09.01) by Youmeng Hin");
+        stage.setTitle("Sudoku (v21.09.13) by Youmeng Hin");
         stage.show();
     }
 }
-
-//    Puzzle p = new Puzzle();
-//    System.out.println(p);
-//    System.out.println(GameLogic.checkCompletion(p.getPuzzleArray()));

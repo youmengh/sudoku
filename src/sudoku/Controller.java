@@ -21,11 +21,8 @@ public class Controller implements Initializable {
 
     @FXML
     public GridPane gridBoard;
-    @FXML
     public GridPane gridPad;
-    @FXML
     public GridPane gridOptions;
-    @FXML
     private Puzzle puzzle;
 
     //grid-related variables
@@ -34,14 +31,10 @@ public class Controller implements Initializable {
     private boolean[][] inputCells; //array showing locations of input cells
 
     //Game option buttons
-    @FXML
     private Button checkPuzzle;
-    @FXML
     public Button newPuzzle;
-    @FXML
-    private Button reset;
-    @FXML
-    private Button quit;
+    public Button reset;
+    public Button quit;
 
     //other variables
     private final int SIZE = 9;
@@ -68,7 +61,7 @@ public class Controller implements Initializable {
      */
     private void initializeGrid() {
 
-        board = new int[SIZE][SIZE];
+//        board = new int[SIZE][SIZE];
         userBoard = new int[SIZE][SIZE];
 
         board = puzzle.getPuzzleArray();        //gets the solution array
@@ -85,7 +78,9 @@ public class Controller implements Initializable {
                 if(!inputCells[r][c]) {
                     userBoard[r][c] = board[r][c];
                     cellButton.setText(String.valueOf(board[r][c]));
+                    cellButton.setStyle("-fx-background-color: #fff");
                 } else {
+                    selectedCell = r * SIZE + c;        //fixes initial color bug for non-input-cell cell (0,0)
                     userBoard[r][c] = 0;
                     cellButton.setText("0");
                     cellButton.setStyle("-fx-background-color: #d3d3d3");
@@ -235,13 +230,13 @@ public class Controller implements Initializable {
         public void handle(ActionEvent actionEvent) {
             if(actionEvent.getSource() == checkPuzzle) {
                 btnCheckPuzzle();
-            }
-            if (actionEvent.getSource() == newPuzzle) {
+            } else if (actionEvent.getSource() == newPuzzle) {
                 System.out.println("New puzzle button pressed");
                 btnNewPuzzle();
 
                 //for debugging purpose
                 System.out.println("New Solution\n" + GameLogic.printBoard(board));
+                System.out.println();
                 System.out.println("New User's Board\n" + GameLogic.printBoard(userBoard));
             }
         }
@@ -249,27 +244,8 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Helper method - used when "Check Puzzle" button is clicked
-     * Checks whether the puzzle is completed and sends the appropriate alert
-     */
-    private void btnCheckPuzzle() {
-        if(GameLogic.comparePuzzleBoard(userBoard, board)) {
-            System.out.println("CONGRATULATIONS, YOU SOLVED THE PUZZLE!");      //for debugging purpose
-            Alert over = new Alert(Alert.AlertType.CONFIRMATION, "CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
-            over.setTitle("Sudoku (v21.09.01) by Youmeng Hin");
-            over.setHeaderText("Result:");
-            over.showAndWait();
-        } else {
-            System.out.println("PUZZLE IS INCOMPLETE :(");
-            Alert notOver = new Alert(Alert.AlertType.CONFIRMATION, "PUZZLE IS INCOMPLETE :(");     //for debugging purpose
-            notOver.setTitle("Sudoku (v21.09.01) by Youmeng Hin");
-            notOver.setHeaderText("Result:");
-            notOver.showAndWait();
-        }
-    }
-
-    /**
      * Helper method - used when "New Puzzle" button is clicked
+     * Initialize variables and virtual and non-virtual components of the puzzle
      */
     public void btnNewPuzzle() {
         //reset miscellaneous variables
@@ -284,4 +260,25 @@ public class Controller implements Initializable {
         initializeKeyPad();
         initializeGameOptions();
     }
+
+    /**
+     * Helper method - used when "Check Puzzle" button is clicked
+     * Checks whether the puzzle is completed and sends the appropriate alert
+     */
+    private void btnCheckPuzzle() {
+        if(GameLogic.comparePuzzleBoard(userBoard, board)) {
+            System.out.println("CONGRATULATIONS, YOU SOLVED THE PUZZLE!");      //for debugging purpose
+            Alert over = new Alert(Alert.AlertType.CONFIRMATION, "CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
+            over.setTitle("Sudoku (v21.09.13) by Youmeng Hin");
+            over.setHeaderText("Result:");
+            over.showAndWait();
+        } else {
+            System.out.println("PUZZLE IS INCOMPLETE :(");
+            Alert notOver = new Alert(Alert.AlertType.CONFIRMATION, "PUZZLE IS INCOMPLETE :(");     //for debugging purpose
+            notOver.setTitle("Sudoku (v21.09.13) by Youmeng Hin");
+            notOver.setHeaderText("Result:");
+            notOver.showAndWait();
+        }
+    }
+
 }

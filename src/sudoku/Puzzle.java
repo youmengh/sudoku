@@ -14,7 +14,7 @@ import java.util.Random;
 public class Puzzle {
     private int[][] board;       //digits on puzzle board
     private boolean[][] inputCells; //represent locations inputs are allowed on the puzzle board (true = allowed)
-//    private int[][] user;           //the puzzle board displayed to the user that can be altered by the user
+    //    private int[][] user;           //the puzzle board displayed to the user that can be altered by the user
     private int[] puzzleNums;       //puzzle grid in 1D int array
     private int inputCellSize;      //the number of input cells on the puzzle board
     private final int SIZE = 9;     //size constant used to contruct and work with puzzle
@@ -35,7 +35,9 @@ public class Puzzle {
         inputCells = new boolean[SIZE][SIZE];
         Random rand = new Random();
         inputCellSize = rand.nextInt(61) + 30;
-        inputCellSize = 1;
+
+        inputCellSize = 1;      //for debugging purpose
+
         setInputCells(inputCellSize);
 
         //initialize and generate arrays
@@ -65,8 +67,8 @@ public class Puzzle {
             if (!inputCells[r][c])
                 inputCells[r][c] = true;
         }
-        for (int j = 0; j < SIZE; j++)
-            System.out.println(Arrays.toString(inputCells[j]));
+//        for (int j = 0; j < SIZE; j++)
+//            System.out.println(Arrays.toString(inputCells[j]));
     }
 
     /**
@@ -293,42 +295,5 @@ public class Puzzle {
     public boolean[][] getInputCells() {
         return inputCells;
     }
-
-    //temporary unused code
-//    /**
-//     * A toString method for printing the puzzle grid in text format
-//     *
-//     * @return A string representation of the grid
-//     */
-//    @Override
-//    public String toString() {
-//        String printedBoard = "";
-//        for (int r = 0; r < SIZE; r++) {
-//            for (int c = 0; c < SIZE; c++) {
-//                printedBoard += board[r][c] + "\t";
-//            }
-//            printedBoard += "\n";
-//        }
-//        return printedBoard;
-//    }
-
+    
 }
-
-//////////////////////////////////////////////////////////////////////////////
-//    /**
-//     * Generates a new valid sudoku puzzle represented by a 2D int array
-//     * @version 21.08.05 - only generates a grid with random numbers
-//     *                   - no puzzle validation
-//     * @return A 2D int array representing the puzzle board
-//     */
-//    private int[][] generatePuzzle() {
-//        int[][] newBoard = new int[SIZE][SIZE];
-//        for(int r  = 0; r < SIZE; r++) {
-//            for(int c  = 0; c < SIZE; c++) {
-//                Random rand = new Random();
-//                newBoard[r][c] = rand.nextInt(9) + 1;
-//            }
-//        }
-//        return newBoard;
-//    }
-//////////////////////////////////////////////////////////////////////////////
