@@ -31,6 +31,7 @@ public class Controller implements Initializable {
     private boolean[][] inputCells; //array showing locations of input cells
 
     //Game option buttons
+    @FXML
     private Button checkPuzzle;
     public Button newPuzzle;
     public Button reset;
@@ -123,10 +124,12 @@ public class Controller implements Initializable {
 
         checkPuzzle = (Button)gridOptions.getChildren().get(0);
         newPuzzle = (Button)gridOptions.getChildren().get(1);
+        reset = (Button)gridOptions.getChildren().get(2);
 
         event = new GameOptionHandler();
         checkPuzzle.setOnAction(event);
         newPuzzle.setOnAction(event);
+        reset.setOnAction(event);
 
     }
 
@@ -203,18 +206,22 @@ public class Controller implements Initializable {
             //if inputCells returns true stores inputKey value in current cell location
             //otherwise send "Unable to edit current cell" prompt and do nothing
             if(inputCells[r][c]) {
+
                 userBoard[r][c] = inputKey;
                 System.out.println(GameLogic.printBoard(userBoard));
                 temp = (Button) gridBoard.getChildren().get(selectedCell);
                 temp.setText(String.valueOf(inputKey));
+
             }
             else {
-                System.out.println(GameLogic.printBoard(userBoard));    //for debugging purpose
+
+                //for debugging purpose
                 System.out.println("Unable to edit current cell");
+                System.out.println("Selected Number: " + inputKey);
+                System.out.println(GameLogic.printBoard(userBoard));
+
             }
 
-            //for debugging purpose
-            System.out.println("Selected Number: " + inputKey);
 
         }
     }
@@ -229,18 +236,47 @@ public class Controller implements Initializable {
         @Override
         public void handle(ActionEvent actionEvent) {
             if(actionEvent.getSource() == checkPuzzle) {
+
                 btnCheckPuzzle();
+
             } else if (actionEvent.getSource() == newPuzzle) {
-                System.out.println("New puzzle button pressed");
+
+                System.out.println("New puzzle button pressed");        // for debugging purpose
                 btnNewPuzzle();
 
                 //for debugging purpose
                 System.out.println("New Solution\n" + GameLogic.printBoard(board));
                 System.out.println();
                 System.out.println("New User's Board\n" + GameLogic.printBoard(userBoard));
+
+            } else if (actionEvent.getSource() == reset) {
+
+                System.out.println("Puzzle reset");       //for debugging purpose
+                btnReset();
+
             }
         }
 
+    }
+
+    /**
+     * Helper method - used when "Check Puzzle" button is clicked
+     * Checks whether the puzzle is completed and sends the appropriate alert
+     */
+    private void btnCheckPuzzle() {
+        if(GameLogic.comparePuzzleBoard(userBoard, board)) {
+            System.out.println("CONGRATULATIONS, YOU SOLVED THE PUZZLE!");      //for debugging purpose
+            Alert over = new Alert(Alert.AlertType.CONFIRMATION, "CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
+            over.setTitle("Sudoku (v21.09.13) by Youmeng Hin");
+            over.setHeaderText("Result:");
+            over.showAndWait();
+        } else {
+            System.out.println("PUZZLE IS INCOMPLETE :(");
+            Alert notOver = new Alert(Alert.AlertType.CONFIRMATION, "PUZZLE IS INCOMPLETE :(");     //for debugging purpose
+            notOver.setTitle("Sudoku (v21.09.13) by Youmeng Hin");
+            notOver.setHeaderText("Result:");
+            notOver.showAndWait();
+        }
     }
 
     /**
@@ -262,23 +298,10 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Helper method - used when "Check Puzzle" button is clicked
-     * Checks whether the puzzle is completed and sends the appropriate alert
+     * Helper method - used when "Reset" button is clicked
      */
-    private void btnCheckPuzzle() {
-        if(GameLogic.comparePuzzleBoard(userBoard, board)) {
-            System.out.println("CONGRATULATIONS, YOU SOLVED THE PUZZLE!");      //for debugging purpose
-            Alert over = new Alert(Alert.AlertType.CONFIRMATION, "CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
-            over.setTitle("Sudoku (v21.09.13) by Youmeng Hin");
-            over.setHeaderText("Result:");
-            over.showAndWait();
-        } else {
-            System.out.println("PUZZLE IS INCOMPLETE :(");
-            Alert notOver = new Alert(Alert.AlertType.CONFIRMATION, "PUZZLE IS INCOMPLETE :(");     //for debugging purpose
-            notOver.setTitle("Sudoku (v21.09.13) by Youmeng Hin");
-            notOver.setHeaderText("Result:");
-            notOver.showAndWait();
-        }
+    public void btnReset() {
+        initializeGrid();
     }
 
 }

@@ -295,5 +295,5 @@ public class Puzzle {
     public boolean[][] getInputCells() {
         return inputCells;
     }
-    
+
 }
