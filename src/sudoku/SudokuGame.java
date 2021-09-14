@@ -5,11 +5,8 @@ package sudoku;
  * @version 21.08.04
  */
 public class SudokuGame {
-
-    /**
-     * Constructor
-     */
-    public SudokuGame() {
+    public static void main(String[] args) {
+        Main.main(args);
     }
 
 }
