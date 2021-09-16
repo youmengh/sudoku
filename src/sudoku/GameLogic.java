@@ -182,20 +182,16 @@ public class GameLogic {
     }
 
     /**
-     * Method used for comparing two puzzle boards given as 2D int arrays (compare the solution board with the user's board)
+     * Method used for comparing two puzzle boards given as 2D int arrays
+     *
      * @param a 2D int array of a puzzle board
      * @param b 2D int array of a puzzle board
      * @return True if every digit is the same false otherwise
      */
     public static boolean comparePuzzleBoard(int[][] a, int[][] b) {
 
-//        //for debugging purpose
-//        System.out.println(printBoard(a)+"\n");
-//        System.out.println(printBoard(b)+"\n");
-
-        for(int r=0; r<a.length; r++) {
+        for (int r = 0; r < a.length; r++) {
             for (int c = 0; c < a[r].length; c++) {
-//                System.out.println("comparing: " + a[r][c] + " " + b[r][c]);    //for debugging purpose
                 if (a[r][c] != b[r][c]) {
                     return false;
                 }

@@ -71,12 +71,12 @@ public class Controller implements Initializable {
         Button cellButton;
         EventHandler<ActionEvent> event;
 
-        for(int r=0; r<SIZE; r++) {
-            for(int c=0; c<SIZE; c++) {
+        for (int r = 0; r < SIZE; r++) {
+            for (int c = 0; c < SIZE; c++) {
 
-                cellButton = (Button) gridBoard.getChildren().get(r*SIZE+c);     //"r*SIZE+c" computes cell index
+                cellButton = (Button) gridBoard.getChildren().get(r * SIZE + c);     //"r*SIZE+c" computes cell index
 
-                if(!inputCells[r][c]) {
+                if (!inputCells[r][c]) {
                     userBoard[r][c] = board[r][c];
                     cellButton.setText(String.valueOf(board[r][c]));
                     cellButton.setStyle("-fx-background-color: #fff");
@@ -108,9 +108,9 @@ public class Controller implements Initializable {
         Button keyButton;
         EventHandler<ActionEvent> event;
 
-        for(int r=0; r<gridPad.getRowCount(); r++) {
-            for (int c=0; c<gridPad.getColumnCount(); c++) {
-                keyButton = (Button) gridPad.getChildren().get(r*gridPad.getRowCount()+c);   //r*gridPad.getRowCount()+c computes the index
+        for (int r = 0; r < gridPad.getRowCount(); r++) {
+            for (int c = 0; c < gridPad.getColumnCount(); c++) {
+                keyButton = (Button) gridPad.getChildren().get(r * gridPad.getRowCount() + c);   //r*gridPad.getRowCount()+c computes the index
                 event = new KeyEventHandler(keyButton);
                 keyButton.setOnAction(event);
             }
@@ -122,10 +122,10 @@ public class Controller implements Initializable {
 
         EventHandler<ActionEvent> event;
 
-        checkPuzzle = (Button)gridOptions.getChildren().get(0);
-        newPuzzle = (Button)gridOptions.getChildren().get(1);
-        reset = (Button)gridOptions.getChildren().get(2);
-        quit = (Button)gridOptions.getChildren().get(3);
+        checkPuzzle = (Button) gridOptions.getChildren().get(0);
+        newPuzzle = (Button) gridOptions.getChildren().get(1);
+        reset = (Button) gridOptions.getChildren().get(2);
+        quit = (Button) gridOptions.getChildren().get(3);
 
         event = new GameOptionHandler();
         checkPuzzle.setOnAction(event);
@@ -160,7 +160,7 @@ public class Controller implements Initializable {
         @Override
         public void handle(ActionEvent e) {
 
-            prevBtn = (Button)gridBoard.getChildren().get(selectedCell); //using selectedCell to reference to the index of the previous button
+            prevBtn = (Button) gridBoard.getChildren().get(selectedCell); //using selectedCell to reference to the index of the previous button
             prevBtn.setStyle("-fx-background-color: #d3d3d3");
 
             //store the row and column indices in r and c
@@ -169,7 +169,7 @@ public class Controller implements Initializable {
 
             //if input is allowed for current cell then update selectedCell value
             //and highlight the current selected cell
-            if(inputCells[r][c]) {
+            if (inputCells[r][c]) {
                 selectedCell = r * SIZE + c;    //update index to current button
                 b.setStyle("-fx-background-color: yellow"); //highlight current button
 
@@ -207,15 +207,14 @@ public class Controller implements Initializable {
 
             //if inputCells returns true stores inputKey value in current cell location
             //otherwise send "Unable to edit current cell" prompt and do nothing
-            if(inputCells[r][c]) {
+            if (inputCells[r][c]) {
 
                 userBoard[r][c] = inputKey;
                 System.out.println(GameLogic.printBoard(userBoard));
                 temp = (Button) gridBoard.getChildren().get(selectedCell);
                 temp.setText(String.valueOf(inputKey));
 
-            }
-            else {
+            } else {
 
                 //for debugging purpose
                 System.out.println("Unable to edit current cell");
@@ -233,11 +232,12 @@ public class Controller implements Initializable {
      */
     private class GameOptionHandler implements EventHandler<ActionEvent> {
 
-        public GameOptionHandler() {}
+        public GameOptionHandler() {
+        }
 
         @Override
         public void handle(ActionEvent actionEvent) {
-            if(actionEvent.getSource() == checkPuzzle) {
+            if (actionEvent.getSource() == checkPuzzle) {
 
                 btnCheckPuzzle();
 
@@ -270,7 +270,7 @@ public class Controller implements Initializable {
      * Checks whether the puzzle is completed and sends the appropriate alert
      */
     private void btnCheckPuzzle() {
-        if(GameLogic.comparePuzzleBoard(userBoard, board)) {
+        if (GameLogic.comparePuzzleBoard(userBoard, board)) {
             System.out.println("CONGRATULATIONS, YOU SOLVED THE PUZZLE!");      //for debugging purpose
             Alert over = new Alert(Alert.AlertType.CONFIRMATION, "CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
             over.setTitle("Sudoku (v21.09.14) by Youmeng Hin");

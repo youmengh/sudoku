@@ -34,7 +34,7 @@ public class Puzzle {
         //set up and place random zeros (30-60 zeros)
         inputCells = new boolean[SIZE][SIZE];
         Random rand = new Random();
-        inputCellSize = rand.nextInt(51) + 30;
+        inputCellSize = rand.nextInt(61) + 30;
 
 //        inputCellSize = 1;      //for debugging purpose
 
