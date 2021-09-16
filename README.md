@@ -1,2 +1,1 @@
-# Sudoku-Java
- 
+# GUI-Sudoku-Game
