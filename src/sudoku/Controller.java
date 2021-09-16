@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
  * This class functions as the logical connection between front-end and back-end
  *
  * @author Youmeng Hin
- * @version 21.09.01
+ * @version 21.09.16
  */
 public class Controller implements Initializable {
 
@@ -273,13 +273,13 @@ public class Controller implements Initializable {
         if (GameLogic.checkCompletion(userBoard)) {
             System.out.println("CONGRATULATIONS, YOU SOLVED THE PUZZLE!");      //for debugging purpose
             Alert over = new Alert(Alert.AlertType.CONFIRMATION, "CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
-            over.setTitle("Sudoku (v21.09.14) by Youmeng Hin");
+            over.setTitle("Sudoku (v21.09.16) by Youmeng Hin");
             over.setHeaderText("Result:");
             over.showAndWait();
         } else {
             System.out.println("PUZZLE IS INCOMPLETE :(");
             Alert notOver = new Alert(Alert.AlertType.CONFIRMATION, "PUZZLE IS INCOMPLETE :(");     //for debugging purpose
-            notOver.setTitle("Sudoku (v21.09.14) by Youmeng Hin");
+            notOver.setTitle("Sudoku (v21.09.16) by Youmeng Hin");
             notOver.setHeaderText("Result:");
             notOver.showAndWait();
         }
