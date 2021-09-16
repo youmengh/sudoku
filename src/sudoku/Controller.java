@@ -270,7 +270,7 @@ public class Controller implements Initializable {
      * Checks whether the puzzle is completed and sends the appropriate alert
      */
     private void btnCheckPuzzle() {
-        if (GameLogic.comparePuzzleBoard(userBoard, board)) {
+        if (GameLogic.checkCompletion(userBoard)) {
             System.out.println("CONGRATULATIONS, YOU SOLVED THE PUZZLE!");      //for debugging purpose
             Alert over = new Alert(Alert.AlertType.CONFIRMATION, "CONGRATULATIONS, YOU SOLVED THE PUZZLE!");
             over.setTitle("Sudoku (v21.09.14) by Youmeng Hin");
