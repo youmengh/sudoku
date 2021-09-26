@@ -34,7 +34,10 @@ public class Puzzle {
         //set up and place random zeros (30-60 zeros)
         inputCells = new boolean[SIZE][SIZE];
         Random rand = new Random();
-        inputCellSize = rand.nextInt(61) + 30;
+
+        //rand.nextInt(31) generates a random number 0-30
+        //we later add 30 making the range of the number of input cells between 30-60
+        inputCellSize = rand.nextInt(31) + 30;
 
 //        inputCellSize = 1;      //for debugging purpose
 
@@ -60,13 +63,21 @@ public class Puzzle {
      */
     private void setInputCells(int numInputs) {
         Random rand = new Random();
-        int r, c;
-        for (int i = 0; i < numInputs; i++) {
-            r = rand.nextInt(9);
-            c = rand.nextInt(9);
-            if (!inputCells[r][c])
+        int r, c;                   //random row and column numbers
+        while (numInputs > 0) {
+            r = rand.nextInt(9);    //generates a random integer for row number (0-8)
+            c = rand.nextInt(9);    //generates a random integer for row number (0-8)
+
+            //if current location is not already an input cell then sets inputCell[r][c] to true
+            //then decrement numInputs by 1
+            if (!inputCells[r][c]) {
                 inputCells[r][c] = true;
+                numInputs--;
+            }
         }
+//        for (int i = 0; i < numInputs; i++) {
+//
+//        }
 //        for (int j = 0; j < SIZE; j++)
 //            System.out.println(Arrays.toString(inputCells[j]));
     }
