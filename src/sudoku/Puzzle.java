@@ -307,4 +307,13 @@ public class Puzzle {
         return inputCells;
     }
 
+    /**
+     * Accessor method for number of input cells on puzzle grid
+     *
+     * @return An integer representing the number of input cells
+     */
+    public int getInputCellSize() {
+        return inputCellSize;
+    }
+
 }

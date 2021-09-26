@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
@@ -23,6 +24,8 @@ public class Controller implements Initializable {
     public GridPane gridBoard;
     public GridPane gridPad;
     public GridPane gridOptions;
+    public Label lblDifficulty;
+
     private Puzzle puzzle;
 
     //grid-related variables
@@ -301,6 +304,9 @@ public class Controller implements Initializable {
         initializeGrid();
         initializeKeyPad();
         initializeGameOptions();
+
+        //update difficulty label
+        lblDifficulty.setText("Difficulty:\t" + puzzle.getInputCellSize() + " empty cells.");
     }
 
     /**
