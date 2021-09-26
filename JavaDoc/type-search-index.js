@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"sudoku","l":"Controller"},{"p":"sudoku","l":"GameLogic"},{"p":"sudoku","l":"Main"},{"p":"sudoku","l":"Puzzle"},{"p":"sudoku","l":"SudokuGame"}];updateSearchResults();

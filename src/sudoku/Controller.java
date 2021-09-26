@@ -21,10 +21,10 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML
-    public GridPane gridBoard;
-    public GridPane gridPad;
-    public GridPane gridOptions;
-    public Label lblDifficulty;
+    public GridPane gridBoard;      //puzzle grid type GridPane variable linked to FXML file
+    public GridPane gridPad;        //puzzle keypad type GridPane variable linked to FXML file
+    public GridPane gridOptions;    //puzzle game options type GridPane variable linked to FXML file
+    public Label lblDifficulty;     //puzzle difficulty label type Label variable linked to FXML file
 
     private Puzzle puzzle;
 
@@ -49,8 +49,8 @@ public class Controller implements Initializable {
     /**
      * Initializes front-end and back-end connection
      *
-     * @param url
-     * @param resourceBundle
+     * @param url - no description
+     * @param resourceBundle - no description
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
