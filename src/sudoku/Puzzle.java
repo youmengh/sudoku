@@ -9,7 +9,7 @@ import java.util.Random;
  * Simulates a Sudoku puzzle board and relevant features
  *
  * @author Youmeng Hin
- * @version 21.09.26
+ * @version 21.10.28
  */
 public class Puzzle {
     private int[][] board;       //digits on puzzle board
