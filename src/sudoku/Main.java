@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  * @version 1.0.0
  */
 public class Main extends Application {
-    public String version = "v1.0.0";
+    private String version = "v1.0.0";
 
     public static void main(String[] args) {
         launch(args);
