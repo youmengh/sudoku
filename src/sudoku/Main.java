@@ -9,9 +9,10 @@ import javafx.stage.Stage;
 
 /**
  * @author Youmeng Hin
- * @version 21.10.28
+ * @version 1.0.0
  */
 public class Main extends Application {
+    public String version = "v1.0.0";
 
     public static void main(String[] args) {
         launch(args);
@@ -32,7 +33,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Sudoku (v21.10.28) by Youmeng Hin");
+        stage.setTitle("Sudoku " + version + " by Youmeng Hin");
         stage.show();
     }
 }

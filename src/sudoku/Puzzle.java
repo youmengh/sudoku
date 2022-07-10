@@ -1,7 +1,7 @@
 package sudoku;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
@@ -9,7 +9,7 @@ import java.util.Random;
  * Simulates a Sudoku puzzle board and relevant features
  *
  * @author Youmeng Hin
- * @version 21.10.28
+ * @version 1.0.0
  */
 public class Puzzle {
     private int[][] board;       //digits on puzzle board
@@ -87,7 +87,7 @@ public class Puzzle {
      *
      * @return An array of size 81 containing the grid
      * @author Mark Fredrick Graves, Jr.
-     * @version 17.03.01
+     * @version 1.0.0
      */
     private int[] generateGrid() {
 
@@ -236,7 +236,7 @@ public class Puzzle {
      * @param grid An array with length 81 to be tested
      * @return A boolean representing if the grid is valid
      * @author Mark Fredrick Graves, Jr.
-     * @version 17.03.01
+     * @version 1.0.0
      */
     private boolean isPerfect(int[] grid) {
         if (grid.length != 81)
